@@ -1,5 +1,13 @@
 # TodoLiveView
 
+A simple todo list application that demonstrates the power and simplicity of Phoenix LiveView. I used it in [this blog post](https://medium.com/@collinewait17/how-to-build-a-phoenix-liveview-todo-list-app-with-testing-db0140c0e20b).
+
+This app allows users to add, mark as complete, and delete tasks in real-time. It has filters that display all, completed, and active tasks as shown in the gif below.
+
+![phoenix-liveview-todo](https://user-images.githubusercontent.com/21334508/230661182-e7f5eb8d-129a-48bf-a474-329ff16f42f6.gif)
+
+
+
 To start your Phoenix server:
 
   * Install dependencies with `mix deps.get`
