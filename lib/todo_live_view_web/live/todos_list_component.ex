@@ -13,6 +13,15 @@ defmodule TodoLiveViewWeb.TodosListComponent do
     {:noreply, socket}
   end
 
+  def handle_event("delete_todo", %{"id" => id}, socket) do
+    todo = Todos.get_todo!(id)
+    Todos.delete_todo(todo)
+
+    socket = assign(socket, items: Todos.list_todos())
+    TodoLiveViewWeb.Endpoint.broadcast(@todos_topic, "todos_updated", socket.assigns)
+    {:noreply, socket}
+  end
+
   def item_completed?(item) do
     if item.completed == true, do: "completed", else: ""
   end

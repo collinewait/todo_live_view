@@ -30,4 +30,13 @@ defmodule TodoLiveViewWeb.TodosLiveTest do
     updated_todo = Todos.get_todo!(todo.id)
     assert updated_todo.completed == true
   end
+
+  test "delete todo item", %{conn: conn} do
+    {:ok, todo} = Todos.create_todo(%{"text" => "first item"})
+    assert todo.completed == false
+
+    {:ok, view, _html} = live(conn, "/")
+    view |> element("button", "Delete") |> render_click()
+    refute has_element?(view, "#item-#{todo.id}")
+  end
 end

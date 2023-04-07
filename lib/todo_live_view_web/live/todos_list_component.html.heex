@@ -20,6 +20,9 @@
         </p>
         <button
           class="delete_btn"
+          phx-click="delete_todo"
+          phx-value-id={item.id}
+          phx-target={@myself}
         >
           Delete
         </button>
