@@ -118,3 +118,22 @@
   0% { opacity: 1; }
   100% { opacity: 0; }
 }
+
+li {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+li button.delete_btn {
+  height: unset;
+  line-height: unset;
+  background-color: #d11a2a;
+}
+p.todo_item {
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+p.todo_item.completed {
+  text-decoration: line-through;
+}

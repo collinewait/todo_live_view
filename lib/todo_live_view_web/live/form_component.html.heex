@@ -3,6 +3,9 @@
     let={f}
     for={@changeset}
     id="todo-form"
+    phx-target={@myself}
+    phx-change="validate"
+    phx-submit="create_todo"
   >
     <%= label(f, :text) %>
     <%= text_input(f, :text) %>
