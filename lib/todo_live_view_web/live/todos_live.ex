@@ -21,4 +21,21 @@ defmodule TodoLiveViewWeb.TodosLive do
   def handle_info(%{event: "todos_updated", payload: %{items: items}}, socket) do
     {:noreply, assign(socket, items: items)}
   end
+
+  def handle_params(params, _url, socket) do
+    items = Todos.list_todos()
+
+    case params["filter_by"] do
+      "completed" ->
+        completed_items = Enum.filter(items, &(&1.completed == true))
+        {:noreply, assign(socket, items: completed_items)}
+
+      "active" ->
+        active_items = Enum.filter(items, &(&1.completed == false))
+        {:noreply, assign(socket, items: active_items)}
+
+      _ ->
+        {:noreply, assign(socket, items: items)}
+    end
+  end
 end

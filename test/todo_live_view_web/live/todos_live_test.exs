@@ -39,4 +39,30 @@ defmodule TodoLiveViewWeb.TodosLiveTest do
     view |> element("button", "Delete") |> render_click()
     refute has_element?(view, "#item-#{todo.id}")
   end
+
+  test "Filter todo items", %{conn: conn} do
+    {:ok, _first_todo} = Todos.create_todo(%{"text" => "first item"})
+    {:ok, _second_todo} = Todos.create_todo(%{"text" => "second item"})
+
+    {:ok, view, _html} = live(conn, "/")
+
+    # complete first item
+    assert view |> element("p", "first item") |> render_click() =~
+             "completed"
+
+    # completed first item should be visible
+    {:ok, view, _html} = live(conn, "/?filter_by=completed")
+    assert render(view) =~ "first item"
+    refute render(view) =~ "second item"
+
+    # active second item should be visible
+    {:ok, view, _html} = live(conn, "/?filter_by=active")
+    refute render(view) =~ "first item"
+    assert render(view) =~ "second item"
+
+    # All items should be visible
+    {:ok, view, _html} = live(conn, "/?filter_by=all")
+    assert render(view) =~ "first item"
+    assert render(view) =~ "second item"
+  end
 end

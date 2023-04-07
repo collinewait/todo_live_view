@@ -11,4 +11,22 @@
     items={@items}
     id="todos_list"
   />
+  <div>
+    Show:
+    <span>
+      <%= live_patch("All",
+        to: Routes.live_path(@socket, TodoLiveViewWeb.TodosLive, %{filter_by: "all"})
+      ) %>
+    </span>
+    <span>
+      <%= live_patch("Active",
+        to: Routes.live_path(@socket, TodoLiveViewWeb.TodosLive, %{filter_by: "active"})
+      ) %>
+    </span>
+    <span>
+      <%= live_patch("Completed",
+        to: Routes.live_path(@socket, TodoLiveViewWeb.TodosLive, %{filter_by: "completed"})
+      ) %>
+    </span>
+  </div>
 </div>
