@@ -5,10 +5,16 @@
         <%= checkbox(
           :item,
           :completed,
+          phx_click: "toggle_todo",
+          phx_value_id: item.id,
+          phx_target: @myself,
           value: item.completed
         ) %>
         <p
-          class="todo_item"
+          class={"todo_item #{item_completed?(item)}"}
+          phx-click="toggle_todo"
+          phx-value-id={item.id}
+          phx-target={@myself}
         >
           <%= item.text %>
         </p>
