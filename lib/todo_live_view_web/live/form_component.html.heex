@@ -1,0 +1,13 @@
+<div>
+  <.form
+    let={f}
+    for={@changeset}
+    id="todo-form"
+  >
+    <%= label(f, :text) %>
+    <%= text_input(f, :text) %>
+    <%= error_tag(f, :text) %>
+
+    <%= submit("Add todo", phx_disable_with: "Adding...") %>
+  </.form>
+</div>

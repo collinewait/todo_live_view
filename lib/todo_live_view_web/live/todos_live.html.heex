@@ -1,0 +1,14 @@
+<div>
+  <h1>Todos</h1>
+  <.live_component
+    module={TodoLiveViewWeb.FormComponent}
+    id="todo_input"
+    text_value={nil}
+    todo={@todo}
+  />
+  <.live_component
+    module={TodoLiveViewWeb.TodosListComponent}
+    items={@items}
+    id="todos_list"
+  />
+</div>
